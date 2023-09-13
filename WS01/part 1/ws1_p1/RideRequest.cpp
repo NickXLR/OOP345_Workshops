@@ -11,7 +11,7 @@ Authenticity Declaration:
 ***********************************************************************************************************************************/
 #include <iostream>
 #include <iomanip>
-#include <string>
+#include <cstring>
 #include "RideRequest.h"
 
 using namespace sdds;

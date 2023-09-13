@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	//   3: third argument
 	//   ...
 	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
-	for (size_t i = 0; i < argc; i++)
+	for (int i = 0; i < argc; i++)
 	{
 		std::cout << i << ". " << argv[i] << std::endl;
 	}
