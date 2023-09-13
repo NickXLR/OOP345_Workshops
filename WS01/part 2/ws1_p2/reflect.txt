@@ -9,3 +9,38 @@ Date of Completion: 12-9-23
 Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 ***********************************************************************************************************************************/
+
+Internal linkage is every variable and function that are accessible only in a unit, 
+like for example the temporary variables I made for reading data from stream:
+	if (input)//testing if istream is in good state
+	{
+		char tempName[CUSTOMER_NAME_MAX]{};
+		string tempDesc{};
+		double tempPrice{};
+		char tempDiscount{};
+They are declared inside an if statemnent and are accessible only there.
+
+External linkage allows access to a variable from the entire solution, 
+such as these two global variables:
+
+extern double g_taxrate;
+extern double g_discount;
+
+------------------------------------------------------------------------------------------
+A static variable is a variable that has an instance throught the runtime of the program,
+such that when its declared, the same instance of it exists even if its declared again.
+
+like this example:
+void sdds::RideRequest::display() const {
+	static size_t count = 1;
+
+The first time the function is called the static variable is created but every subsequent time its calle, the same variable is used.
+in my solution it was useful to display the count on RideRequest when it was displayed, I could keep track of how many times the display function was called.
+
+
+------------------------------------------------------------------------------------------
+For part two I added an implementation of the rule of 3.
+also I had to change the way I read a value into the description, by releasing it from memory first and then dynamically allocating and copying to it.
+Also I have added the relese of memory of the description when setting the object to a safe empty state.
+
+
