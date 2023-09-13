@@ -117,8 +117,8 @@ RideRequest& sdds::RideRequest::operator=(RideRequest& ro)
 {
 	if (ro)
 	{	//if in good state copy all
-		strcpy_s(m_customerName, ro.m_customerName);
-		strcpy_s(m_rideDesc, ro.m_rideDesc);
+		strcpy(m_customerName, ro.m_customerName);
+		strcpy(m_rideDesc, ro.m_rideDesc);
 		m_ridePrice = ro.m_ridePrice;
 		m_isDiscounted = ro.m_isDiscounted;
 	}
