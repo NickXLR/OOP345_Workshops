@@ -57,6 +57,12 @@ namespace sdds
 		/// sets current object to empty state
 		/// </summary>
 		void setEmpty();
+		/// <summary>
+		/// setter for dynamic description
+		/// </summary>
+		/// <param name="size">how big you want it</param>
+		/// <param name="source"></param>
+		void setRideDescription(size_t size, const char* source);
 	};
 
 

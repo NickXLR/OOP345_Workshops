@@ -53,6 +53,7 @@ void sdds::RideRequest::setEmpty()
 {
 	m_customerName[0] = '\0';
 	delete[] m_rideDesc;
+	m_rideDesc = NULL;
 }
 
 std::istream& sdds::RideRequest::read(std::istream& input)
@@ -82,6 +83,9 @@ std::istream& sdds::RideRequest::read(std::istream& input)
 			//Read successful, assign to members
 			strcpy(m_customerName, tempName);
 			//strcpy(m_rideDesc, tempDesc);
+			//Checking if description is empty, if not clear it before copying to it
+
+			delete[] m_rideDesc;
 
 			//setting the description
 			size_t size  = tempDesc.length();
@@ -140,6 +144,10 @@ RideRequest& sdds::RideRequest::operator=(RideRequest& ro)
 		if (ro)
 		{	//if in good state copy all
 			strcpy(m_customerName, ro.m_customerName);
+			//Checking if description is empty, if not clear it before copying to it
+
+			delete[] m_rideDesc;
+
 			//Dynamically allocate space for description and copy to it
 			size_t size = strlen(ro.m_rideDesc);
 			m_rideDesc = new char[size+1];
