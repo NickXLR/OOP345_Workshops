@@ -1,3 +1,4 @@
+#define _CRT_SECRE_NO_WARNINGS
 /**********************************************************************************************************************************
 				<assessment name: Workshop - #1 (Part-1)>
 Full Name  : Nikolay Gofstein
@@ -9,6 +10,7 @@ Date of Completion: 12-9-23
 Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 ***********************************************************************************************************************************/
+
 #include <iostream>
 #include <iomanip>
 #include <cstring>
@@ -64,8 +66,8 @@ std::istream& sdds::RideRequest::read(std::istream& input)
 		if (input)
 		{
 			//Read successful, assign to members
-			strcpy_s(m_customerName, tempName);
-			strcpy_s(m_rideDesc, tempDesc);
+			strcpy(m_customerName, tempName);
+			strcpy(m_rideDesc, tempDesc);
 			m_ridePrice = tempPrice;
 			//cout << endl << "HAVE READ PRICE FOR " << m_customerName << " >" << tempPrice << "<" << endl;
 			m_isDiscounted = (tempDiscount == 'Y') ? true : false;
