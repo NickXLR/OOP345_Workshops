@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
 	for (int i = 0; i < argc; i++)
 	{
-		std::cout << std::setw(2) << i << ": " << argv[i] << std::endl;
+		std::cout << std::setw(3) << i << ": " << argv[i] << std::endl;
 	}
 	std::cout << "--------------------------\n\n";
 
