@@ -12,6 +12,7 @@ Authenticity Declaration:
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <cstring>
 #include <string>
 #include "AirportModels.h"
 
