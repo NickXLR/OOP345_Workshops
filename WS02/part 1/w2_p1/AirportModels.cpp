@@ -34,19 +34,19 @@ std::ostream& sdds::Airport::print(std::ostream& out) const
         printLabel(out, "Airport Name");
         printValue(out, m_airportName);
 
-        printLabel(out, "Airport City");
+        printLabel(out, "City");
         printValue(out, m_airportCity);
 
-        printLabel(out, "Airport State");
+        printLabel(out, "State");
         printValue(out, m_airportState);
 
-        printLabel(out, "Airport Country");
+        printLabel(out, "Country");
         printValue(out, m_airportCoutry);
 
-        printLabel(out, "Airport Latitude");
+        printLabel(out, "Latitude");
         printValue(out, m_latitude);
 
-        printLabel(out, "Airport Longitude");
+        printLabel(out, "Longitude");
         printValue(out, m_longitude);
     }
     else
