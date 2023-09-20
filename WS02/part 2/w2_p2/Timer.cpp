@@ -19,13 +19,13 @@ using namespace sdds;
 void sdds::Timer::start()
 {
 	//set start to the time at call
-	m_start = std::chrono::system_clock::now();
+	m_start = std::chrono::steady_clock::now();
 }
 
 long long int sdds::Timer::stop()
 {
 	//get time at stop
-	m_end = std::chrono::system_clock::now();
+	m_end = std::chrono::steady_clock::now();
 	//calculate and store difference between start and stop
 	auto chrono_duration = duration_cast<nanoseconds>(m_end - m_start);
 

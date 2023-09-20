@@ -9,3 +9,24 @@ Date of Completion: 19.9.23
 Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 ***********************************************************************************************************************************/
+In this workshop I have learned how to implement the rule of 5, implementing move constructor and assignment operator togather with the previous rule of 3.
+I have refreshed my memory of reading data from files and populating a dynamically allocated array with the data.
+I have also learned how to some of the <chrono> library, particularly clocks, time points, getting current time and casting between chrono's types.
+
+
+There is a huge time difference between the copy and move operator and constructor, that is because the move operation changes the value it receives, 
+It copies the address of the given object instead of deep copying its contents, we can do this because the received object is of type rvalue reference, 
+meaning that its close to the end of its life (either because its going out of scope or its temporary).
+
+The approach was to first read the number of rows of the file and store it in count, then dynamically allocate the appropriate amount of space for that count.
+And finally reading the file again line by line and storing the data.
+There is a way to avoid rereading the file, we can read and count at the sime time, 
+but every piece of data we add we would have to reallocate more space and deep copy again, 
+that would be much slower.
+
+From what I have read system_clock measures UNIX time and doesnt have to be monotonic, which means that the time points in this clock can decrease,
+if someone changes the system time. While steady_clock is a monotonic clock that measures time since last reboot, it is monotonic because the starting time of that 
+clock cannot move back, the last reboot time cannot be changed.
+Because steady_clock is monotonic its more suited to be used to count time between to timestamps, because their beggining cant move and it stable.
+If I understand correctly system_clock is more suited to count the actual world time, because it goes back to 1 of January 1970 like UNIX time, 
+so its better for things like calendars and scheduals.
