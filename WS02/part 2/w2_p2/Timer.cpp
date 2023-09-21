@@ -24,10 +24,10 @@ void sdds::Timer::start()
 
 long long int sdds::Timer::stop()
 {
-	//get time at stop
-	m_end = std::chrono::steady_clock::now();
+	//get time now
+	time_point <std::chrono::steady_clock>end = std::chrono::steady_clock::now();
 	//calculate and store difference between start and stop
-	auto chrono_duration = duration_cast<nanoseconds>(m_end - m_start);
+	auto chrono_duration = duration_cast<nanoseconds>(end - m_start);
 
 	long long int duration = chrono_duration.count();
 	
