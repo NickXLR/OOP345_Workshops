@@ -13,8 +13,8 @@ namespace sdds
 		const unsigned m_capacity = C;
 		unsigned m_size{};
 		T m_items[C]{};
-		static T m_smallestItem{};
-		static T m_largestItem{};
+		static T m_smallestItem;
+		static T m_largestItem;
 	protected:
 		/// <summary>
 		/// sets smallest item to received item if its smaller
@@ -42,7 +42,7 @@ namespace sdds
 		/// <summary>
 		/// defauld constructor
 		/// </summary>
-		Collection() : m_items{}, m_size{} {}
+		Collection() = default;
 		/// <summary>
 		/// copy constructor is prohibited, class is to only be instantiated with default constructor
 		/// </summary>
