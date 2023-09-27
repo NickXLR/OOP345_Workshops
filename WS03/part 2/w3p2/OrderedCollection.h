@@ -44,7 +44,6 @@ namespace sdds
 				}
 				else//smaller than largest, will be placed either in the beginning or middle, will have to shift all items bigger than it up
 				{
-					T temp{};
 					//find index to place this item
 					unsigned int targetIndex = 0u;
 					bool foundTarget = false;
