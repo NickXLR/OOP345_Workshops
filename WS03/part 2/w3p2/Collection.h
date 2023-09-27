@@ -195,14 +195,14 @@ namespace sdds
 	{
 		if (*this)
 		{
-			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill('-') << std::setw(77) << "| " << '|' << std::endl;
 			out << std::setfill(' ');
 			for (size_t i = 0; i < m_size; i++)
 			{
 				out << "| ";
 				m_items[i].print(out) << " |" << std::endl;
 			}
-			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill('-') << std::setw(77) << "| " << '|' << std::endl;
 			out << std::setfill(' ');
 		}
 	}
@@ -215,14 +215,14 @@ namespace sdds
 	{
 		if (*this)
 		{
-			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill('-') << std::setw(77) << "| " << '|' << std::endl;
 			out << std::setfill(' ');
 			for (size_t i = 0; i < m_size; i++)
 			{
 				out << "| ";
 				m_items[i].print(out) << " |" << std::endl;
 			}
-			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill('-') << std::setw(77) << "| " << '|' << std::endl;
 			out << std::setfill(' ');
 		}
 	}
