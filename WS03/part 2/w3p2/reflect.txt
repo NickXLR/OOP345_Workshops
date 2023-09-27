@@ -1,0 +1,65 @@
+/**********************************************************************************************************************************
+                <assessment name: Workshop - #3 (Part-2)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: 27.9.23
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+Definitions of class templates need to be included in the header file to avoid mistakes, we can work around it and place a definition in a separate .cpp file
+it would look like this:
+	template <typename T, unsigned C>
+	void Collection<T,C>::print(std::ostream& out) const
+	{
+		if (*this)
+		{
+			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill(' ');
+			for (size_t i = 0; i < m_size; i++)
+			{
+				out << "| ";
+				m_items[i].print(out) << " |" << std::endl;
+			}
+			out << std::setfill('-') << std::setw(77) << '|' << '|' << std::endl;
+			out << std::setfill(' ');
+		}
+	}
+	
+	
+To the book class I have added a bool operator to return the state of the object.
+operator< and > to compare 2 books, needed to insert into ascending order in OrderedCollection
+
+Functions getSmallestItem() and getLargestItem() cannot be queries because they return a static variable.
+
+function operator[]() in Collection cannot be a query because we need to be able to set the element in the array when inserting in OrderedCollection.
+So this function needs to return a modifyable reference.
+
+For Collection I have defined m_smallestItem and m_largestItem outside of the class because they are static members, 
+the class can declare them but not initialize them because they dont belong to it, so initialization is required outside of the class.
+
+	//initializing smallest and biggest item for general collection
+	template <typename T,const unsigned C>
+	T Collection<T,C>::m_smallestItem = 9999;
+	template <typename T,const unsigned C>
+	T Collection<T,C>::m_largestItem = -9999;
+
+I had to specialize the definition of m_smallestItem and m_largestItem for Book and size 10 to set it to certain number of pages and number of chapters,
+otherwise they would be initialized to 0, and when compared to smallest 0 will always be smallest.
+
+	//Book specialization with size 10
+	template <>
+	Book Collection<Book,10>::m_smallestItem("",1,1000);
+	template <>
+	Book Collection<Book, 10>::m_largestItem("", 10000, 1);
+
+We have to create a specialization for every size of book collection thats used, in order to initialize its smallest and largest item correctly.
+
+	//Book specialization with size 72
+	template <>
+	Book Collection<Book, 72>::m_smallestItem("", 1, 10000);
+	template <>
+	Book Collection<Book, 72>::m_largestItem("", 10000, 1);
