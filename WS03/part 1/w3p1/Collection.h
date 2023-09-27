@@ -11,10 +11,10 @@ namespace sdds
 	class Collection
 	{
 		const unsigned m_capacity = C;
-		unsigned m_size;
-		T m_items[C];
-		static T m_smallestItem;
-		static T m_largestItem;
+		unsigned m_size{};
+		T m_items[C]{};
+		static T m_smallestItem{};
+		static T m_largestItem{};
 	protected:
 		/// <summary>
 		/// sets smallest item to received item if its smaller
