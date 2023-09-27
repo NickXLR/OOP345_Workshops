@@ -179,17 +179,12 @@ namespace sdds
 	template <>
 	Book Collection<Book, 10>::m_largestItem("", 10000, 1);
 
-	//Book special;ization with size 72
-	//template <>
-	//Book Collection<Book, 72>::m_smallestItem("", 1, 10000);
-	//template <>
-	//Book Collection<Book, 72>::m_largestItem("", 10000, 1);
+	//Book specialization with size 72
+	template <>
+	Book Collection<Book, 72>::m_smallestItem("", 1, 10000);
+	template <>
+	Book Collection<Book, 72>::m_largestItem("", 10000, 1);
 
-	//Book special;ization with size 72
-	template <>
-	Book Collection<Book, C>::m_smallestItem("", 1, 10000);
-	template <>
-	Book Collection<Book, C>::m_largestItem("", 10000, 1);
 
 	/// <summary>
 	/// print specialization for Book collection of size 10
