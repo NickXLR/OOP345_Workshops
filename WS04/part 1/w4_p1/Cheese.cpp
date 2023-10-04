@@ -92,8 +92,7 @@ std::ostream& sdds::Cheese::printCheese(std::ostream& out) const
 		<< "|" << setw(5) << m_weight
 		<< "|" << setw(5) << setiosflags(ios::fixed) << setprecision(2) << m_price
 		<< "|" << setw(34) << setiosflags(ios::right) << m_features 
-		<< "|" << resetiosflags(ios::right) << endl;
-
+		<< " |" << resetiosflags(ios::right) << endl;
 	return out;
 }
 
