@@ -20,7 +20,7 @@ using namespace sdds;
 
 sdds::Cheese::Cheese() : m_weight{}, m_price{}, m_features{}
 {
-	m_name = "Nac";
+	m_name = "NaC";
 }
 
 sdds::Cheese::Cheese(const std::string& details)
