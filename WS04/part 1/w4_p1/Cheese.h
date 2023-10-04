@@ -54,6 +54,13 @@ namespace sdds
 	/// <param name="out">WHERE to print</param>
 	/// <returns>same ostream</returns>
 	std::ostream& operator<<(std::ostream& out, const Cheese& cheesy);
+
+	/// <summary>
+	/// cut a strings trailing and following spaces
+	/// </summary>
+	/// <param name="str">what to trim</param>
+	/// <returns>trimmed string</returns>
+	std::string cutSpaces(std::string str);
 }
 
 

@@ -21,9 +21,6 @@
     <ClCompile Include="Cheese.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="cheeses.txt">
@@ -35,9 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cheese.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

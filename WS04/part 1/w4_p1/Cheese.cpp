@@ -14,7 +14,6 @@ Authenticity Declaration:
 #include <iomanip>
 #include <string>
 #include "Cheese.h"
-#include "Utils.h"
 
 using namespace std;
 using namespace sdds;
@@ -121,4 +120,24 @@ std::string sdds::Cheese::getFeatures() const
 std::ostream& sdds::operator<<(std::ostream& out, const Cheese& cheesy)
 {
 	return cheesy.printCheese(out);
+}
+
+std::string sdds::cutSpaces(std::string str)
+{
+	unsigned i = 0;
+
+	//erasing trailing spaces
+	while (isspace(str[i]) && i < str.length())
+		i++;
+
+	str = str.erase(0, i);
+
+	//erasing following spaces
+	i = 0;
+	while (!(isspace(str[i]) && isspace(str[i + 1])) && i < str.length())
+		i++;
+
+	str = str.erase(i, str.length());
+
+	return str;
 }
