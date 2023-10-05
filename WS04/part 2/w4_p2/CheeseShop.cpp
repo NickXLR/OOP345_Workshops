@@ -61,6 +61,8 @@ void sdds::CheeseShop::emptyShop()
 			m_cheeses[i] = nullptr;
 		}
 	}
+	m_numCheeses = 0;
+	m_name = "";
 	delete[] m_cheeses;
 	m_cheeses = nullptr;
 }
