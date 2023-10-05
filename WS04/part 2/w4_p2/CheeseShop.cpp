@@ -114,7 +114,7 @@ sdds::CheeseShop::CheeseShop(CheeseShop&& move) noexcept
 
 CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 {
-	if (this != &copy)
+	if (this != &copy && copy)
 	{
 		emptyShop();
 		m_name = copy.m_name;
