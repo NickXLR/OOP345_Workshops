@@ -116,7 +116,12 @@ CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 {
 	if (this != &copy && copy)
 	{
-		emptyShop();
+		for(size_t i = 0u; i < copy.m_numCheeses ; i++)
+		{
+			delete m_cheeses[i];
+		}
+		delete[] m_cheeses;
+		
 		m_name = copy.m_name;
 		m_numCheeses = copy.m_numCheeses;
 		m_cheeses = new Cheese * [m_numCheeses];
