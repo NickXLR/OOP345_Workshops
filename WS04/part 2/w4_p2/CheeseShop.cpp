@@ -29,9 +29,7 @@ CheeseShop::CheeseShop(const string& name)
 
 CheeseShop& sdds::CheeseShop::addCheese(const Cheese& addCheese)
 {
-	//creating a new cheese pointer and storing given cheese in it
-	Cheese* newCheese = new Cheese;
-	*newCheese = addCheese;
+
 	//creating a new array thats 1 bigger
 	Cheese** newArr = new Cheese * [m_numCheeses + 1];
 	//copying from old array to new
@@ -41,9 +39,15 @@ CheeseShop& sdds::CheeseShop::addCheese(const Cheese& addCheese)
 		*(newArr[i]) = *(m_cheeses[i]);
 	}
 	//adding the new one to new array
-	newArr[m_numCheeses] = newCheese;
+	newArr[m_numCheeses] = new Cheese;
+	*(newArr[m_numCheeses]) = addCheese;
 	//clearing current collection before taking new address
-	emptyShop();
+	for (size_t i = 0; i < m_numCheeses; i++)
+	{
+		delete m_cheeses[i];
+		m_cheeses[i] = nullptr;
+	}
+	delete[] m_cheeses;
 	//moving the address of the new array to member
 	m_cheeses = newArr;
 	m_numCheeses++;
@@ -61,7 +65,8 @@ void sdds::CheeseShop::emptyShop()
 			m_cheeses[i] = nullptr;
 		}
 	}
-	m_numCheeses = 0;
+	m_name = "";
+	m_numCheeses = 0u;
 	delete[] m_cheeses;
 	m_cheeses = nullptr;
 }

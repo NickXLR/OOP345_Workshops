@@ -31,6 +31,8 @@ void sdds::CheeseShop::emptyShop()
 			m_cheeses[i] = nullptr;
 		}
 	}
+	m_name = "";
+	m_numCheeses = 0u;
 	delete[] m_cheeses;
 	m_cheeses = nullptr;
 }
@@ -43,6 +45,7 @@ void sdds::CheeseParty::emptyParty()
 		m_pCheeses[i] = nullptr;
 	}
 	m_numCheeses = 0;
+	delete[] m_pCheeses;
 	m_pCheeses = nullptr;
 }
 
