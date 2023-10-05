@@ -116,10 +116,7 @@ CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 {
 	if (this != &copy)
 	{
-		if (!*this)
-		{
-			emptyShop();
-		}
+		emptyShop();
 		m_name = copy.m_name;
 		m_numCheeses = copy.m_numCheeses;
 		m_cheeses = new Cheese * [m_numCheeses];
