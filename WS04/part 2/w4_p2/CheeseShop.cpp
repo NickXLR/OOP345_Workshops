@@ -123,8 +123,8 @@ CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 
 		for (size_t i = 0; i < m_numCheeses; i++)
 		{
-			m_cheeses[i] = new Cheese;
-			*(m_cheeses[i]) = *(copy.m_cheeses[i]);
+			m_cheeses[i] = new Cheese{ *(copy.m_cheeses[i]) };
+			//*(m_cheeses[i]) = *(copy.m_cheeses[i]);
 		}
 	}
 
