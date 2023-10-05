@@ -134,7 +134,6 @@ CheeseParty& sdds::CheeseParty::operator=(CheeseParty&& move) noexcept
 		emptyParty();
 		//take the resource
 		m_numCheeses = move.m_numCheeses;
-		m_pCheeses = new const Cheese * [m_numCheeses];
 		m_pCheeses = move.m_pCheeses;
 		move.m_pCheeses = nullptr;
 		move.m_numCheeses = 0;
