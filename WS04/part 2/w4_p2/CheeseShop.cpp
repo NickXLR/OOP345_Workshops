@@ -35,22 +35,18 @@ CheeseShop& sdds::CheeseShop::addCheese(const Cheese& addCheese)
 {
 
 	//creating a new array thats 1 bigger
-	Cheese** newArr = new Cheese * [m_numCheeses + 1];
+	const Cheese** newArr = new const Cheese * [m_numCheeses + 1];
+
 	//copying from old array to new
 	for (size_t i = 0; i < m_numCheeses; i++)
 	{
-		newArr[i] = new Cheese;
-		*(newArr[i]) = *(m_cheeses[i]);
+		newArr[i] = m_cheeses[i];
 	}
+
 	//adding the new one to new array
-	newArr[m_numCheeses] = new Cheese;
-	*(newArr[m_numCheeses]) = addCheese;
+	newArr[m_numCheeses] = new Cheese(addCheese);
+
 	//clearing current collection before taking new address
-	for (size_t i = 0; i < m_numCheeses; i++)
-	{
-		delete m_cheeses[i];
-		m_cheeses[i] = nullptr;
-	}
 	delete[] m_cheeses;
 	//moving the address of the new array to member
 	m_cheeses = newArr;
@@ -114,9 +110,9 @@ sdds::CheeseShop::CheeseShop(CheeseShop&& move) noexcept
 
 CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 {
-	if (this != &copy && copy)
+	if (this != &copy)
 	{
-		for(size_t i = 0u; i < copy.m_numCheeses ; i++)
+		for(size_t i = 0u; i < m_numCheeses ; i++)
 		{
 			delete m_cheeses[i];
 		}
@@ -124,7 +120,7 @@ CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 		
 		m_name = copy.m_name;
 		m_numCheeses = copy.m_numCheeses;
-		m_cheeses = new Cheese * [m_numCheeses];
+		m_cheeses = new const Cheese * [m_numCheeses];
 
 		for (size_t i = 0; i < m_numCheeses; i++)
 		{
@@ -140,6 +136,7 @@ CheeseShop& sdds::CheeseShop::operator=(CheeseShop&& move) noexcept
 {
 	if (this != &move)
 	{
+		emptyShop();
 		//take everything
 		m_name = move.m_name;
 		m_numCheeses = move.m_numCheeses;
@@ -147,6 +144,7 @@ CheeseShop& sdds::CheeseShop::operator=(CheeseShop&& move) noexcept
 		//leave nothing behind
 		move.m_cheeses = nullptr;
 		move.m_name = "";
+		move.m_numCheeses = 0u;
 	}
 
 	return *this;

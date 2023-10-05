@@ -23,7 +23,7 @@ namespace sdds
 	{
 		std::string m_name{};
 		unsigned m_numCheeses{};
-		Cheese** m_cheeses{};	//Dynamically allocated array of dynamically allocated cheeses
+		const Cheese** m_cheeses{};	//Dynamically allocated array of dynamically allocated cheeses
 
 	public:
 		CheeseShop();
