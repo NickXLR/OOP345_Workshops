@@ -20,11 +20,15 @@ using namespace sdds;
 sdds::CheeseShop::CheeseShop()
 {
 	m_name = "No Name";
+	m_numCheeses = 0u;
+	m_cheeses = nullptr;
 }
 
 CheeseShop::CheeseShop(const string& name)
 {
 	m_name = name;
+	m_numCheeses = 0u;
+	m_cheeses = nullptr;
 }
 
 CheeseShop& sdds::CheeseShop::addCheese(const Cheese& addCheese)
