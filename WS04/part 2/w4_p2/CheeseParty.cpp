@@ -24,6 +24,7 @@ void sdds::CheeseParty::emptyParty()
 		m_pCheeses[i] = nullptr;
 	}
 	m_numCheeses = 0;
+	delete[] m_pCheeses;
 	m_pCheeses = nullptr;
 }
 
@@ -42,7 +43,7 @@ void sdds::CheeseParty::removeCheeseAndShrink(const unsigned index)
 	if (index < m_numCheeses)
 	{
 		const Cheese** newCheeseParty = new const Cheese * [m_numCheeses - 1];
-		//deep copy except index
+		//copy except index
 		for (size_t i = 0, j = 0; i < m_numCheeses - 1; i++, j++)
 		{
 			if (j == index)
