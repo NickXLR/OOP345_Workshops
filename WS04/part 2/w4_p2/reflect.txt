@@ -10,3 +10,82 @@ Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 ***********************************************************************************************************************************/
 
+The difference between composition and aggregation is that in composition there is resource management
+A cheese shop isnt one without cheese, so its composed of cheese, a cheese party can still be a party without cheese.
+
+the array of cheese in cheese shop is declared like so:
+Cheese** m_cheeses{};
+and in cheese party like so:
+const Cheese** m_pCheeses{};
+
+note the const means that the actual value of the cheese cannot be changed in cheese party unlike in cheese shop.
+the biggest difference is in how clear the dynamically allocated array:
+cheese shop:
+void sdds::CheeseShop::emptyShop()
+{
+	if (*this)
+	{
+		for (size_t i = 0; i < m_numCheeses; i++)
+		{
+			delete m_cheeses[i];
+			m_cheeses[i] = nullptr;
+		}
+	}
+	delete[] m_cheeses;
+	m_cheeses = nullptr;
+}
+
+cheese party:
+void sdds::CheeseParty::emptyParty()
+{
+	for (size_t i = 0; i < m_numCheeses; i++)
+	{
+		m_pCheeses[i] = nullptr;
+	}
+	m_numCheeses = 0;
+	m_pCheeses = nullptr;
+}
+
+In cheese shop Im deleting each and every cheese in the array before deleting the array itself, 
+in cheeseParty im only deleting the array itself.
+
+
+In regards to move and copy constructor, for shop I had to dynamically allocate each cheese
+after allocating the array, in party the only dynamically allocated part is the array.
+
+dynamically allocating every cheese in shop:
+		for (size_t i = 0; i < m_numCheeses; i++)
+		{
+			m_cheeses[i] = new Cheese;
+			*(m_cheeses[i]) = *(copy.m_cheeses[i]);
+		}
+in party is only assignemt:
+		for (size_t i = 0; i < m_numCheeses; i++)
+		{
+			m_pCheeses[i] = copy.m_pCheeses[i];
+		}
+		
+For adding cheese in party I had to check for duplicates first, because otherwise
+I could have 2 pointers to the same cheese, in shop thats not a problem since every cheese
+is its own instance.
+Also in shop when creating a new resized array I had to dynamically allocate the array and every cheese.
+
+For remove cheese the function would be similar to the way its done in party,
+I would add 3 member functions to CheeseShop:
+
+findEmptyCheese: 
+Loops through all cheese objects untill it reaches the end or a cheese with weight 0,
+returns the index with an empty cheese, otherwise -1.
+
+removeCheeseAndShrink:
+Loops through all cheese objects and copies to a new array
+untill the given index to remove, then it skips this one and copies the rest.
+once its done reduces the number of cheeses in the class by 1.
+
+removeCheese:
+Loops as long as findEmptyCheese returns -1, each time it returns a value
+calls removeCheeseAndShrink with the same index.
+
+the only difference between shop and party would be for shop in function 
+removeCheeseAndShrink, when it copies the cheese it will dynamically allocate 
+a new one before copying.

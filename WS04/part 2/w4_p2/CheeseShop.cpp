@@ -4,11 +4,12 @@ Full Name  : Nikolay Gofstein
 Student ID#: 182368217
 Email      : ngofstein@myseneca.ca
 Section    :  ZAA
-Date of Completion: 10.4.23
+Date of Completion: 10.5.23
 
 Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 ***********************************************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include "CheeseShop.h"
@@ -122,21 +123,15 @@ CheeseShop& sdds::CheeseShop::operator=(const CheeseShop& copy)
 
 CheeseShop& sdds::CheeseShop::operator=(CheeseShop&& move) noexcept
 {
-	if (this != &move && move)
+	if (this != &move)
 	{
-		emptyShop();
-		//m_name = move.m_name;
-		m_name = "";
+		//take everything
+		m_name = move.m_name;
 		m_numCheeses = move.m_numCheeses;
 		m_cheeses = move.m_cheeses;
-
-		//for (size_t i = 0; i < m_numCheeses; i++)
-		//{
-		//	m_cheeses[i] = move.m_cheeses[i];
-		//	move.m_cheeses[i] = nullptr;
-		//}
-
+		//leave nothing behind
 		move.m_cheeses = nullptr;
+		move.m_name = "";
 	}
 
 	return *this;
