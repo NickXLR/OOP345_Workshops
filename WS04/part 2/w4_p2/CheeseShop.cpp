@@ -104,7 +104,7 @@ std::ostream& sdds::CheeseShop::print(std::ostream& out) const
 
 sdds::CheeseShop::CheeseShop(const CheeseShop& copy)
 {
-	operator=(copy);
+	*this = copy;
 }
 
 sdds::CheeseShop::CheeseShop(CheeseShop&& move) noexcept
