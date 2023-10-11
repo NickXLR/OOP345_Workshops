@@ -57,7 +57,7 @@ namespace sdds
 		copy.erase(0, delim + 1);
 
 		//get Book description
-		delim = copy.find_first_of(',');
+		delim = copy.find_first_of('\n');
 		temp = copy.substr(0, delim);
 		m_description = cutSpaces(temp);
 	}
