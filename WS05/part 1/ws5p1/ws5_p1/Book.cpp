@@ -106,11 +106,12 @@ namespace sdds
 		str = str.erase(0, i);
 
 		//erasing following spaces
-		i = 0;
-		while (!(isspace(str[i]) && isspace(str[i + 1])) && i < str.length())
-			i++;
+		i = str.length() - 1;
+		while (isspace(str[i]) && i > 0)
+			i--;
 
-		str = str.erase(i, str.length());
+		if(i < str.length() - 1)
+			str = str.erase(i + 1, str.length());
 
 		return str;
 	}
