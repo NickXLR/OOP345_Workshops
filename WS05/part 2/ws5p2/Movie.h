@@ -32,7 +32,7 @@ namespace sdds
 		template <typename T>
 		void fixSpelling(T& spellChecker)
 		{
-			T(m_description);
+			spellChecker(m_description);
 		}
 
 		friend std::ostream& operator<<(std::ostream& out, Movie& movie);
