@@ -47,7 +47,6 @@ namespace sdds
 		{
 			//loop untill the current bad word is no longer found
 			unsigned position{};
-			unsigned endPosition{};
 			bool foundBadWord{};
 			do
 			{
@@ -55,7 +54,6 @@ namespace sdds
 				foundBadWord = position <= text.length();
 				if (foundBadWord)
 				{
-					endPosition = position + m_badWords[wordsTocheck].length();
 					text.replace(position, m_badWords[wordsTocheck].length(), m_goodWords[wordsTocheck]);
 					//count replacements for this bad word
 					m_numFixed[wordsTocheck]++;

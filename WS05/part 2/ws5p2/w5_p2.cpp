@@ -230,7 +230,7 @@ int main(int argc, char** argv)
 		for (auto i = 0u; i < 10; ++i)
 			std::cout << theCollection[i];
 	}
-	catch (std::out_of_range err)
+	catch (std::out_of_range &err)
 	{
 		std::cout << "** EXCEPTION: " << err.what() << std::endl;
 	}
