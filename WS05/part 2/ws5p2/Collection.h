@@ -40,7 +40,7 @@ namespace sdds
 			delete[] m_items;
 		}
 		//bool operator returns true if theres any items in Collection
-		bool operator()
+		operator bool() const
 		{
 			return (m_size > 0);
 		}
