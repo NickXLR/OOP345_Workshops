@@ -1,0 +1,70 @@
+/**********************************************************************************************************************************
+				<assessment name: Workshop - #5 (Part-2)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: 10.4.23
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+A lambda expression is turned into a functor class by the compiler, but a functor class does not have a context option like a lambda does,
+so every parameter thats needed should be passed to it, because of this lambda expressions are better used when theres context variables needed.
+
+right now its written like so:
+	sdds::SpellChecker::SpellChecker(const char* filename)
+	{
+		ifstream wordFile(filename);
+		if (wordFile)
+		{
+			string line{};
+			size_t count = 0u;
+			//reading line by line and populating word arrays
+			while (wordFile && count < WORD_COUNT)
+			{
+				getline(wordFile, line);
+				readWords(line, m_badWords[count], m_goodWords[count]);
+				count++;
+			}
+		}
+		else
+		{
+			throw "Bad file name!";
+		}
+	}
+	
+instead of throwing an exception I would just initialize all of Spellcheckers member variables to a sape empty state,
+calling the default constructor like so:
+	sdds::SpellChecker::SpellChecker(const char* filename) : SpellChecker()
+	{
+		ifstream wordFile(filename);
+		if (wordFile)
+		{
+			string line{};
+			size_t count = 0u;
+			//reading line by line and populating word arrays
+			while (wordFile && count < WORD_COUNT)
+			{
+				getline(wordFile, line);
+				readWords(line, m_badWords[count], m_goodWords[count]);
+				count++;
+			}
+		}
+	}
+
+As for Book and Movie, I would create a parent class for them both called "Media", this parent class would be virtual, it would have loaded the first 3 pieces of information from the file,
+and later on the classes would continue reading the rest of the information thats specific to them.
+
+The default constructor is always necessary for any class, if we dont provide one the compiler will generate one.
+I have explicitly asked the compiler to do so in my code:
+		Book() = default;
+		Movie() = default;
+Its ok to do so because I have initialized my member variables to a safe emppty state at creation:
+	class Movie
+	{
+		std::string m_title{};
+		size_t m_release{};
+		std::string m_description{};
+If I havent done so I would need to have a default constructor that initializes those variables to a safe empty state.

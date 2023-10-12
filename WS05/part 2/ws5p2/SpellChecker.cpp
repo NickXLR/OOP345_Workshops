@@ -52,11 +52,11 @@ namespace sdds
 			do
 			{
 				position = text.find(m_badWords[wordsTocheck]);
-				foundBadWord = position != string::npos;
+				foundBadWord = position <= text.length();
 				if (foundBadWord)
 				{
 					endPosition = position + m_badWords[wordsTocheck].length();
-					text.replace(position, endPosition, m_goodWords[wordsTocheck]);
+					text.replace(position, m_badWords[wordsTocheck].length(), m_goodWords[wordsTocheck]);
 					//count replacements for this bad word
 					m_numFixed[wordsTocheck]++;
 				}
@@ -68,6 +68,7 @@ namespace sdds
 	}
 	void SpellChecker::showStatistics(std::ostream& out) const
 	{
+		out << "Spellchecker Statistics" << endl;
 		for (size_t i = 0; i < WORD_COUNT; i++)
 		{
 			out << setiosflags(ios::right) << setw(15) << m_badWords[i] << ": " 
@@ -79,7 +80,7 @@ namespace sdds
 	void readWords(std::string line, std::string& bad, std::string& good)
 	{
 		size_t position = 0u;
-		size_t lineSize = sizeof(line) / sizeof(line[0]);
+		size_t lineSize = line.length();
 		//reading first word (bad)
 		while (!isspace(line[position]) && position < lineSize)
 		{

@@ -63,7 +63,7 @@ namespace sdds
 			bool dupe = false;
 			//check if duplicate
 			for (size_t i = 0; i < m_size && !dupe; i++)
-				dupe = item == m_items[i];
+				dupe = (m_items[i].title() == item.title());
 
 			if (!dupe)
 			{
@@ -93,7 +93,7 @@ namespace sdds
 				return m_items[idx];
 			}
 		}
-		T* operator[](const std::string& title) const
+		T* operator[](const char* title) const
 		{
 			T* item = nullptr;
 			for (size_t i = 0; i < m_size; i++)

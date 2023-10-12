@@ -39,8 +39,8 @@ namespace sdds
 		copy.erase(0, delim + 1);
 
 		//get Movie description
-		delim = copy.find_first_of(',');
-		temp = copy.substr(0, delim);
+		//delim = copy.find_first_of(',');
+		temp = copy.substr(0, strMovie.length() - 1);
 		m_description = cutSpaces(temp);
 	}
 	const std::string& sdds::Movie::title() const
@@ -51,10 +51,10 @@ namespace sdds
 	{
 		out << setw(40) << m_title << " | "
 			<< setw(4) << m_release << " | "
-			<< setw(5) << m_description;
+			<< setw(5) << m_description << endl;;
 		return out;
 	}
-	std::ostream& operator<<(std::ostream& out, Movie& movie)
+	std::ostream& operator<<(std::ostream& out,const Movie& movie)
 	{
 		return movie.print(out);
 	}

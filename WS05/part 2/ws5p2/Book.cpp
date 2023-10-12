@@ -85,7 +85,7 @@ namespace sdds
 			<< setw(5) << m_country << " | "
 			<< setw(4) << m_year << " | "
 			<< setw(6) << setprecision(2) << setiosflags(ios::fixed) << m_price << " | "
-			<< m_description;
+			<< m_description << endl;
 
 		return out;
 	}
