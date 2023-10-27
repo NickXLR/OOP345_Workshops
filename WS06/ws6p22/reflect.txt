@@ -1,0 +1,32 @@
+/**********************************************************************************************************************************
+				<assessment name: Workshop - #6 (Part-2)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: 27-10-23
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+1. I need to dealocate the memory because I manage it, class Directory manages the resources inside its vector, 
+they are in composition relationship.
+
+2. I had to cast the Resource pointer to a Directory pointer in order to use its member function find().
+for example in the find() function of Directory if the RECURSIVE flag is passed and I check a certain ddirectory,
+I have to call its find() as well, so I have to cast it to a Directory before doing so:
+
+result = dynamic_cast<Directory*>(m_contents[i])->find(name, flags);
+
+3. It is possible but it would be harder to remove directories recursively since I would not manage the resourses,
+right now my Directory destructor looks like so:
+
+	Directory::~Directory()
+	{
+		for (auto item : m_contents)
+			delete item;
+	}
+	
+If I had to remove a directory with a vector of Resources, 
+I would have to write code that recursively removes the resource from each vector if Im deleting a Directory.
