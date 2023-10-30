@@ -175,15 +175,16 @@ namespace sdds
 			{
 				if (res->type() == NodeType::FILE)
 				{
-					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << " bytes |";
+					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << " bytes |\n";
 				}
 				else if (res->type() == NodeType::DIR)
 				{
-					os << "  " << std::setw(2) << std::resetiosflags(std::ios::right) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |";
+					os << "  " << std::setw(2) << std::resetiosflags(std::ios::right) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |\n";
 				}
 				//os << std::resetiosflags(std::ios::right) << "";
 			}
-			os << std::endl;
+			else
+				os << std::endl;
 		}
 	}
 	std::string Directory::name() const
