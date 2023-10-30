@@ -165,21 +165,22 @@ namespace sdds
 		{
 			if (res->type() == NodeType::FILE)
 			{
-				os << "F | " << std::setw(15) << std::setiosflags(std::ios::left) << res->name() << " |";
+				os << "F | ";
 			}
 			else if (res->type() == NodeType::DIR) 
 			{
-				os << "D | " << std::setw(15) << std::setiosflags(std::ios::left) << res->name() << " |";
+				os << "D | ";
 			}
+			os << std::setw(15) << std::setiosflags(std::ios::left) << res->name() << std::setiosflags(std::ios::left) << " |";
 			if (longFlag)
 			{
 				if (res->type() == NodeType::FILE)
 				{
-					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << " bytes |\n";
+					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes |\n";
 				}
 				else if (res->type() == NodeType::DIR)
 				{
-					os << "  " << std::setw(2) << std::resetiosflags(std::ios::right) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |\n";
+					os << "  " << std::setw(2) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes |\n";
 				}
 				//os << std::resetiosflags(std::ios::right) << "";
 			}

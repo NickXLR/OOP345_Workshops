@@ -90,6 +90,7 @@ namespace sdds
 		}
 		else
 		{
+			delete m_root;
 			throw "ERROR READING FILE";
 		}
 	}
