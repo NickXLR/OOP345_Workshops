@@ -143,7 +143,7 @@ namespace sdds
 		delete m_root;
 		m_current = nullptr;
 	}
-	std::string& trimString(std::string& source)
+	void trimString(std::string& source)
 	{
 		size_t begin = source.find_first_not_of(" \t\n");
 		size_t end = source.find_last_not_of(" \t\n");
@@ -157,6 +157,5 @@ namespace sdds
 			res = "";
 		}
 		source = res;
-		return res;
 	}
 }

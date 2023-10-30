@@ -57,7 +57,7 @@ namespace sdds
 	{
 		bool dupe = false;
 		//check weather such an item exists
-		for (auto i = 0; i < m_contents.size() && !dupe; i++)
+		for (size_t i = 0; i < m_contents.size() && !dupe; i++)
 		{
 			if (toAdd->name() == m_contents[i]->name())
 				dupe = true;
@@ -175,11 +175,11 @@ namespace sdds
 			{
 				if (res->type() == NodeType::FILE)
 				{
-					os << "  " << std::setw(2) << "" << "| " <<  std::setiosflags(std::ios::right) << res->size() << " bytes |";
+					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << " bytes |";
 				}
 				else if (res->type() == NodeType::DIR)
 				{
-					os << "  " << std::setw(2) << res->count() << "| " << std::setiosflags(std::ios::right) << res->size() << " bytes |";
+					os << "  " << std::setw(2) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |";
 				}
 				os << std::resetiosflags(std::ios::right);
 			}

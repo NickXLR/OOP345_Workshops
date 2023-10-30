@@ -45,7 +45,7 @@ namespace sdds
 		~Filesystem();
 	};
 
-	std::string& trimString(std::string&);
+	void trimString(std::string&);
 }
 
 #endif
