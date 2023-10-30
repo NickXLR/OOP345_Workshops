@@ -179,9 +179,9 @@ namespace sdds
 				}
 				else if (res->type() == NodeType::DIR)
 				{
-					os << "  " << std::setw(2) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |";
+					os << "  " << std::setw(2) << std::resetiosflags(std::ios::right) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << " bytes |";
 				}
-				os << std::resetiosflags(std::ios::right) << "";
+				//os << std::resetiosflags(std::ios::right) << "";
 			}
 			os << std::endl;
 		}
