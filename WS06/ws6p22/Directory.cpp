@@ -176,11 +176,11 @@ namespace sdds
 			{
 				if (res->type() == NodeType::FILE)
 				{
-					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes |\n";
+					os << "  " << std::setw(2) << "" << "|" << std::setw(5) <<  std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes | \n";
 				}
 				else if (res->type() == NodeType::DIR)
 				{
-					os << "  " << std::setw(2) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes |\n";
+					os << "  " << std::setw(2) << res->count() << "|" << std::setw(5) << std::setiosflags(std::ios::right) << res->size() << std::resetiosflags(std::ios::right) << " bytes | \n";
 				}
 				//os << std::resetiosflags(std::ios::right) << "";
 			}
