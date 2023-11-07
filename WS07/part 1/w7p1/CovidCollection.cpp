@@ -13,6 +13,7 @@ Authenticity Declaration:
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include "CovidCollection.h"
 
 using namespace std;
@@ -68,7 +69,6 @@ namespace sdds
 
 				//ignore everything else untill newline
 				file.ignore(numeric_limits<std::streamsize>::max(),'\n');
-
 				//file >> newCov.m_country >> newCov.m_city >> newCov.m_variant >> tempYear >> tempCases >> tempDeaths;
 				// 
 				//add the new covid to collection
