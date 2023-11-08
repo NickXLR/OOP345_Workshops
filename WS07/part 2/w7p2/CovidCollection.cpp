@@ -171,13 +171,17 @@ namespace sdds
 				}
 				else //they are the same
 				{
-					if (a.m_deaths > b.m_deaths)
+					if (a.m_deaths < b.m_deaths)
 					{
 						return true;
 					}
-					else
+					else if (a.m_deaths > b.m_deaths)
 					{
 						return false;
+					}
+					else //same variant and same year rare edge case
+					{
+						return a.m_year < b.m_year;
 					}
 				}
 				});
