@@ -1,0 +1,25 @@
+/**********************************************************************************************************************************
+				<assessment name: Workshop - #7 (Part-2)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: 7-11-23
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+All STL function used in this workshop:
+
+for_each to display all Covids in the collection and to accumulate cases and deaths.
+sort to sort the collection based on received criteria, like country.
+any_of for function inCollection to indicate wheather there exists a country with a specified variant with more than the amount of deaths specified.
+copy_if to copy from collection to a new list any covid statistic with more deaths than provided.
+transform to change the severity in each Covid in the collection to the corresponding one depending on number of deaths.
+
+If I wrote the loops myself I would have to come up with a lot more logic than exists, like sort, My code would also be a lot slower than the provided algorythms.
+
+I would redesign it so that an unsigned integer is received in place of a string, such that for example, 
+passing col.sort(0) would sort the collection based on the first member of Covid, which is country, if a number would be passed larger than number of member variable in Covid, 
+I would throw an exception that such afield does not exist.
