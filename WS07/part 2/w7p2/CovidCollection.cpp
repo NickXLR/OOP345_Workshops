@@ -121,6 +121,7 @@ namespace sdds
 						localDeaths += cov.m_deaths;
 					}
 				});
+			out << setfill('-') << setw(89) << '\n' << setfill(' ');
 			TotCases << "Total cases in " << country << ": " << localCases;
 			out << "|" << setw(85) << setiosflags(ios::right) << TotCases.str() << " |\n";
 			TotDeaths << "Total deaths in " << country << ": " << localDeaths;
@@ -170,7 +171,7 @@ namespace sdds
 				}
 				else //they are the same
 				{
-					if (a.m_deaths < b.m_deaths)
+					if (a.m_deaths > b.m_deaths)
 					{
 						return true;
 					}
@@ -184,11 +185,11 @@ namespace sdds
 		else if (field == "year")
 		{
 			std::sort(m_coll.begin(), m_coll.end(), [=](const Covid& a, const Covid& b) {
-				if (a.m_year > b.m_year)
+				if (a.m_year < b.m_year)
 				{
 					return true;
 				}
-				else if (a.m_year < b.m_year)
+				else if (a.m_year > b.m_year)
 				{
 					return false;
 				}
