@@ -4,7 +4,7 @@ Full Name  : Nikolay Gofstein
 Student ID#: 182368217
 Email      : ngofstein@myseneca.ca
 Section    :  ZAA
-Date of Completion: 7-11-23
+Date of Completion: 9-11-23
 
 Authenticity Declaration:
  I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
@@ -17,6 +17,7 @@ Authenticity Declaration:
 #include <string>
 #include <vector>
 #include <sstream>
+#include <numeric>
 #include "CovidCollection.h"
 
 using namespace std;
@@ -88,38 +89,42 @@ namespace sdds
 
 	void CovidCollection::display(std::ostream& out, const std::string& country) const
 	{
-		size_t totalCases{};
-		size_t totalDeaths{};
+		const size_t totalCases = accumulate(m_coll.begin(), m_coll.end(), 0, [](size_t sum,const Covid& cov) {
+			return sum + cov.m_cases;
+			});
+		const size_t totalDeaths = accumulate(m_coll.begin(), m_coll.end(), 0, [](size_t sum,const Covid& cov) {
+			return sum + cov.m_deaths;
+			});
 
 		if (country == "ALL")
 		{
-			for_each(m_coll.begin(), m_coll.end(), [=,&out, &totalCases, &totalDeaths](Covid cov) 
-				{
-					out << cov << endl;
-					totalCases += cov.m_cases;
-					totalDeaths += cov.m_deaths;
-				});
+			for_each(m_coll.begin(), m_coll.end(), [=,&out](Covid cov) {out << cov << endl;}); //print all covids
 			out << "|" << setw(80) << setiosflags(ios::right) << "Total cases around the world: " << totalCases << " |\n"
 				<< "|" << setw(80) << "Total deaths around the world: " << totalDeaths << " |\n" << resetiosflags(ios::right);
 		}
 		else
 		{
-			size_t localCases{};
-			size_t localDeaths{};
+			const size_t localCases = accumulate(m_coll.begin(), m_coll.end(), 0, [country](size_t sum, const Covid& cov) {
+				if (cov.m_country == country)
+					return sum + cov.m_cases;
+				else
+					return sum;
+				});
+			const size_t localDeaths = accumulate(m_coll.begin(), m_coll.end(), 0, [country](size_t sum, const Covid& cov) {
+				if (cov.m_country == country)
+					return sum + cov.m_deaths;
+				else
+					return sum;
+				});
+
 			stringstream TotCases{};
 			stringstream TotDeaths{};
 			stringstream TotPercent{};
 			out << "Displaying information of country = " << country << "\n";
-			for_each(m_coll.begin(), m_coll.end(), [=, &out, &totalCases, &totalDeaths, &localCases, &localDeaths](Covid cov)
+			for_each(m_coll.begin(), m_coll.end(), [=, &out,&localCases, &localDeaths](Covid cov) //print all covids for given country
 				{
-					totalCases += cov.m_cases;
-					totalDeaths += cov.m_deaths;
 					if (cov.m_country == country)
-					{
 						out << cov << endl;;
-						localCases += cov.m_cases;
-						localDeaths += cov.m_deaths;
-					}
 				});
 			out << setfill('-') << setw(89) << '\n' << setfill(' ');
 			TotCases << "Total cases in " << country << ": " << localCases;
