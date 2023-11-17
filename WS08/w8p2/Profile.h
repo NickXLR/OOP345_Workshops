@@ -97,7 +97,10 @@ namespace sdds {
 			//std::cout << "Tested ZIP: >" << m_address.postal_code << "<\n";
 
 			if (negativeAddress)
+			{
+				delete this;
 				throw std::string("Negative address number");
+			}
 			if (!goodPostal)
 			{
 				//std::cout << "Tested ZIP: >" << m_address.postal_code << "<\n";
