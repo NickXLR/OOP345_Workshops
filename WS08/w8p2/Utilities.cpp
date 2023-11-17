@@ -21,8 +21,8 @@ namespace sdds {
 			bool profileBanned = false;
 			for (size_t j = 0; j < bannedProfiles.size() && !profileBanned; ++j)
 			{
-				//profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_name.last_name == bannedProfiles[j].m_name.last_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
-				profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
+				profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_name.last_name == bannedProfiles[j].m_name.last_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
+				//profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
 			}
 
 
@@ -37,6 +37,10 @@ namespace sdds {
 
 				delete prof;
 			}
+			//else
+			//{
+			//	std::cout << "\n" << allProfiles[i].m_name << " banned\n";
+			//}
 		}
 
 		return result;
@@ -53,7 +57,8 @@ namespace sdds {
 			bool profileBanned = false;
 			for (size_t j = 0; j < bannedProfiles.size() && !profileBanned; ++j)
 			{
-				profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
+				profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_name.last_name == bannedProfiles[j].m_name.last_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
+				//profileBanned = (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name) && (allProfiles[i].m_age == bannedProfiles[j].m_age);
 			}
 
 
