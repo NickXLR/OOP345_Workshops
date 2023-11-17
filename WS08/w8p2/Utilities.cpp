@@ -32,8 +32,10 @@ namespace sdds {
 				//validate address
 				allProfiles[i].validateAddress();
 
-				Profile* prof = new Profile(allProfiles[i]);
+				Profile* prof = new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age);
 				result += prof;
+
+				delete prof;
 			}
 		}
 
@@ -61,7 +63,7 @@ namespace sdds {
 				//validate address
 				allProfiles[i].validateAddress();
 
-				std::shared_ptr<Profile> p(new Profile(allProfiles[i]));
+				std::shared_ptr<Profile> p(new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age));
 				//Profile* prof = new Profile(allProfiles[i]);
 				result += p;
 			}
