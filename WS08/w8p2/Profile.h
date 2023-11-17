@@ -92,9 +92,11 @@ namespace sdds {
 		void validateAddress() const
 		{
 			bool negativeAddress = m_address.number < 0;
-			bool goodPostal = (isalpha(m_address.postal_code[0]) && isdigit(m_address.postal_code[1]) && isalpha(m_address.postal_code[2]) && m_address.postal_code[3] == ' ' && isdigit(m_address.postal_code[4]) && isalpha(m_address.postal_code[5]) && isdigit(m_address.postal_code[6]));
+			//bool goodPostal = (isalpha(m_address.postal_code[0]) && isdigit(m_address.postal_code[1]) && isalpha(m_address.postal_code[2]) && m_address.postal_code[3] == ' ' && isdigit(m_address.postal_code[4]) && isalpha(m_address.postal_code[5]) && isdigit(m_address.postal_code[6]));
 
-			//std::cout << "Tested ZIP: >" << m_address.postal_code << "<\n";
+			bool goodPostal = (isalpha(m_address.postal_code[0]) && isalpha(m_address.postal_code[2]) && m_address.postal_code[3] == ' ' && isdigit(m_address.postal_code[4]) && isalpha(m_address.postal_code[5]) && isdigit(m_address.postal_code[6]));
+
+			//std::cout << "Tested ZIP: >" << m_address.postal_code << "< result is: "<< goodPostal << "\n";
 
 			if (negativeAddress)
 			{
