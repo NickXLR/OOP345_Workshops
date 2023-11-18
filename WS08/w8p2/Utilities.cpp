@@ -30,9 +30,17 @@ namespace sdds {
 			if (!profileBanned)
 			{
 				//validate address
-				allProfiles[i].validateAddress();
-
 				Profile* prof = new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age);
+				try 
+				{
+					prof->validateAddress();
+				}
+				catch(...)
+				{
+					delete prof;
+					throw;
+				}
+
 				result += prof;
 
 				delete prof;
@@ -65,10 +73,11 @@ namespace sdds {
 
 			if (!profileBanned)
 			{
-				//validate address
-				allProfiles[i].validateAddress();
-
 				std::shared_ptr<Profile> p(new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age));
+
+				//validate address
+				p->validateAddress();
+
 				//Profile* prof = new Profile(allProfiles[i]);
 				result += p;
 			}
