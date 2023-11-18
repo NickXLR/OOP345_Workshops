@@ -40,6 +40,7 @@ namespace sdds {
 		void operator+=(T* address)
 		{
 			database.push_back(*address);
+			//database.push_back(std::move(*address));
 		}
 		
 		// TODO: Overload the += operator with a smart pointer
@@ -47,6 +48,7 @@ namespace sdds {
 		void operator +=(std::shared_ptr<T> ptr)
 		{
 			database.push_back(*ptr);
+			//database.push_back(std::move(*ptr));
 		}
 
 

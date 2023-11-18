@@ -78,7 +78,6 @@ namespace sdds {
 				//validate address
 				p->validateAddress();
 
-				//Profile* prof = new Profile(allProfiles[i]);
 				result += p;
 			}
 		}

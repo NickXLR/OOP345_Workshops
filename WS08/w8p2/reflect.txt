@@ -1,0 +1,77 @@
+/**********************************************************************************************************************************
+				<assessment name: Workshop - #8 (reflect)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: DATE
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+I mostly had trouble with deletion of the raw pointer, 
+I refreshed my memory on how to catch an error and then rethrow it again, so that I can create a ponter, 
+validate its address, then if it throws an error, to deallocate the memory and continue throwing.
+Using smart pointers makes this unnessesary.
+
+				//validate address
+				Profile* prof = new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age);
+				try 
+				{
+					prof->validateAddress();
+				}
+				catch(...)
+				{
+					delete prof;
+					throw;
+				}
+				
+1. Well, I dont have to worry about memory deallocation since the smart pointer will deallocate it for me in case it goes out of scope.
+
+2. The main logic I had to implement was creating a dynamically allocated Profile, validate its address and then add it to a Database.
+For Raw pointers it looks like this:
+
+				Profile* prof = new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age);
+				try 
+				{
+					prof->validateAddress();
+				}
+				catch(...)
+				{
+					delete prof;
+					throw;
+				}
+
+				result += prof;
+
+				delete prof;
+
+I had to place address validation inside a try-catch block because it might throw an error and I will need to clean up the pointer.
+as well as cleaning it up after adding its copy to Database.
+
+The smar pointer logic looks much more straight forward:
+
+				std::shared_ptr<Profile> p(new Profile(allProfiles[i].m_name, allProfiles[i].m_address, allProfiles[i].m_age));
+
+				//validate address
+				p->validateAddress();
+
+				result += p;
+				
+I simply create it, validate and add, if theres an error in validation the smart pointer will delete itself.
+
+3. The reason is that I first create a copy of the Profile, when I dynamically allocate it, then I validate it, and finally when adding it to the result Database its added by copy again.
+
+My solution would be to first validate without making a copy, if its valid only then dynamically allocate it and add it to the Database, 
+to the database itself I would add the pointer as it is, without copying it.
+
+4. I have tried using
+
+database.push_back(std::move(*address));
+
+isntead of 
+
+database.push_back(*address);
+
+I have checked both ways and it looks the same to me, a copy is created and added to the vector of Profiles.
