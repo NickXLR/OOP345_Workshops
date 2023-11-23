@@ -24,7 +24,8 @@ I I understand all this correctly, for a single thread, all these wait times wou
 while with many threads, the waiting was done simultaneously, which reduced the total wait time.
 
 1.
-Using binary files allowed the program to store the double precision averages and variances, and when reading them they didnt lose any precision.
+Using binary files allowed the program to read and store a size of an array and the data of an array without having to worry too much about the formatting,
+so not having to break it down to tokens, and when writing not having to format the output.
 
 2.
 It reduces the typing that we have to do, binding simplifies the function call, in our examplem when calling computeVarFactor with a thread
