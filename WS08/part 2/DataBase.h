@@ -37,18 +37,10 @@ namespace sdds {
 
 		// TODO: Overload the += operator with a raw pointer
 		//       as a second operand.
-		void operator+=(T* address)
-		{
-			database.push_back(*address);
-		}
+		
 		
 		// TODO: Overload the += operator with a smart pointer
 		//       as a second operand.
-		void operator +=(std::shared_ptr<T> ptr)
-		{
-			database.push_back(*ptr);
-		}
-
 
 		void display(std::ostream& os) const {
             os << std::fixed << std::setprecision(2);

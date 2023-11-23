@@ -23,7 +23,6 @@ namespace sdds
 		avg = 0;
 		for (int i = 0; i < size; i++) {
 			avg += arr[i];
-			//std::this_thread::sleep_for(std::chrono::nanoseconds(1));
 		}
 		avg /= divisor;
 	}
@@ -39,7 +38,6 @@ namespace sdds
 		var = 0;
 		for (int i = 0; i < size; i++) {
 			var += (arr[i] - avg) * (arr[i] - avg);
-			//std::this_thread::sleep_for(std::chrono::nanoseconds(1));
 		}
 		var /= divisor;
 	}
@@ -55,14 +53,8 @@ namespace sdds
 		//         memory for "data".
 		//       The file is binary and has the format described in the specs.
 
-		std::fstream file{};
-		file.open(filename, std::ios_base::in | std::ios_base::binary);
-
-		file.read(reinterpret_cast<char*>(&total_items), sizeof(total_items));
-		data = new int[total_items];
 
 
-		file.read(reinterpret_cast<char*>(data), sizeof(total_items) * total_items);
 
 
 
@@ -92,7 +84,6 @@ namespace sdds
 		return total_items > 0 && data;
 	}
 
-
 	// TODO Improve operator() function from part-1 for multi-threaded operation. Enhance the  
 	//   function logic for the computation of average and variance by running the 
 	//   function computeAvgFactor and computeVarFactor in multile threads. 
@@ -106,68 +97,6 @@ namespace sdds
 	// Save the data into a file with filename held by the argument fname_target. 
 	// Also, read the workshop instruction.
 
-	int ProcessData::operator()(const std::string& target_file, double& avg, double& var)
-	{
-		using namespace std::placeholders;
-
-		auto computeAvgFactorThreaded = std::bind(computeAvgFactor, _1, _2, total_items, _3);
-
-
-
-		//creeating threads to calculate averages
-		std::vector<std::thread> threads;
-		for (int i = 0; i < num_threads; ++i)
-		{
-			//threads.push_back(std::thread(computeAvgFactorThreaded,data + p_indices[i], (total_items / num_threads), std::ref(averages[i])));
-			threads.push_back(std::thread(computeAvgFactorThreaded, data + p_indices[i], p_indices[1] - p_indices[0], std::ref(averages[i])));
-		}
-		//joining the threads
-		for (auto& thread : threads)
-		{
-			thread.join();
-		}
-		//add the factors to avg
-		for (int i = 0; i < num_threads; ++i)
-		{
-			avg += averages[i];
-		}
-
-		threads.clear();
-
-		//calculate variance
-		auto computeVarFactorThreaded = std::bind(computeVarFactor,_1,_2,total_items,avg,_3);
-		for (int i = 0; i < num_threads; i++)
-		{
-			//threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], (total_items / num_threads), std::ref(variances[i])));
-			threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], p_indices[1] - p_indices[0], std::ref(variances[i])));
-		}
-		//joining the threads
-		for (auto& thread : threads)
-		{
-			thread.join();
-		}
-		//add the variances to var
-		for (int i = 0; i < num_threads; ++i)
-		{
-			var += variances[i];
-		}
-
-		//write to file
-		std::fstream file{};
-		file.open(target_file, std::ios_base::out | std::ios_base::binary);
-
-		if (!file)
-		{
-			throw std::string("File " + target_file + " cannot be opened");
-		}
-
-		file.write(reinterpret_cast<char*>(&total_items), sizeof(total_items));
-
-		file.write(reinterpret_cast<char*>(data), total_items * sizeof(total_items));
-
-
-		return 0;
-	}
 
 
 

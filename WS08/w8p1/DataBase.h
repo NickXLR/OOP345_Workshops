@@ -21,8 +21,8 @@ namespace sdds {
 			std::ifstream file(fn);
 			if (!file)
 				throw std::string("*** Failed to open file ") + std::string(fn) + std::string(" ***");
-            while (file) {
-                T e;
+			while (file) {
+				T e;
 				try {
 					if (e.load(file))
 						database.push_back(T(e));
@@ -30,7 +30,7 @@ namespace sdds {
 				catch (...) {
 					break;
 				}
-            }
+			}
 		}
 		size_t size() const { return database.size(); }
 		const T& operator[](size_t i) const { return database[i]; }
@@ -41,17 +41,9 @@ namespace sdds {
 		{
 			database.push_back(*address);
 		}
-		
-		// TODO: Overload the += operator with a smart pointer
-		//       as a second operand.
-		void operator +=(std::shared_ptr<T> ptr)
-		{
-			database.push_back(*ptr);
-		}
-
 
 		void display(std::ostream& os) const {
-            os << std::fixed << std::setprecision(2);
+			os << std::fixed << std::setprecision(2);
 			for (auto& e : database)
 				os << e;
         }
