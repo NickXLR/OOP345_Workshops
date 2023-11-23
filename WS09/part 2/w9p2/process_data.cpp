@@ -119,7 +119,8 @@ namespace sdds
 		for (int i = 0; i < num_threads; ++i)
 		{
 			//threads.push_back(std::thread(computeAvgFactorThreaded,data + p_indices[i], (total_items / num_threads), std::ref(averages[i])));
-			threads.push_back(std::thread(computeAvgFactorThreaded, data + p_indices[i], p_indices[1] - p_indices[0], std::ref(averages[i])));
+			//std::cout << "start at index >" << p_indices[i] << "< end at index >" << p_indices[i+1] - p_indices[i] << "<" << std::endl;
+			threads.push_back(std::thread(computeAvgFactorThreaded, data + p_indices[i], p_indices[i + 1] - p_indices[i], std::ref(averages[i])));
 		}
 		//joining the threads
 		for (auto& thread : threads)
@@ -139,7 +140,7 @@ namespace sdds
 		for (int i = 0; i < num_threads; i++)
 		{
 			//threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], (total_items / num_threads), std::ref(variances[i])));
-			threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], p_indices[1] - p_indices[0], std::ref(variances[i])));
+			threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], p_indices[i + 1] - p_indices[i], std::ref(variances[i])));
 		}
 		//joining the threads
 		for (auto& thread : threads)
@@ -163,7 +164,7 @@ namespace sdds
 
 		file.write(reinterpret_cast<char*>(&total_items), sizeof(total_items));
 
-		file.write(reinterpret_cast<char*>(data), total_items * sizeof(total_items));
+		file.write(reinterpret_cast<char*>(data), total_items * sizeof(data[0]));
 
 
 		return 0;
