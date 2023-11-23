@@ -1,0 +1,43 @@
+/**********************************************************************************************************************************
+				<assessment name: Workshop - #9 (reflection)>
+Full Name  : Nikolay Gofstein
+Student ID#: 182368217
+Email      : ngofstein@myseneca.ca
+Section    :  ZAA
+Date of Completion: 22-11-23
+
+Authenticity Declaration:
+ I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+***********************************************************************************************************************************/
+
+When adding the line
+std::this_thread::sleep_for(std::chrono::nanoseconds(1));
+inside the for loop in functions computeAvgFactor and computeVarFactor
+The time it took to compute with a single jumped up from single digits (was around 7ms) to double and even triple digits.
+changing the sleep to 10 nanoseconds doesnt seem to do much, same as 1 nanosecond
+and it was the same for 50 nanoseconds as well
+
+as for 10 threads, going from no sleep to 1ns of sleep, about tripled the time, from around 10ms to 30ms
+but increasing the sleep time did not increase the wait time by much.
+
+I I understand all this correctly, for a single thread, all these wait times would add up, and the same thread would sleep every cycle of the for-loop,
+while with many threads, the waiting was done simultaneously, which reduced the total wait time.
+
+1.
+Using binary files allowed the program to store the double precision averages and variances, and when reading them they didnt lose any precision.
+
+2.
+It reduces the typing that we have to do, binding simplifies the function call, in our examplem when calling computeVarFactor with a thread
+instead of passing it 5 arguments we bound it to always receiving total_items and avg like so:
+auto computeVarFactorThreaded = std::bind(computeVarFactor,_1,_2,total_items,avg,_3);
+
+such that the call became much simpler:
+threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], (total_items / num_threads), std::ref(variances[i])));
+
+this would also open the door for me to create a template which receives the function and adds it to a thread, since now Im creating functions with the same number of arguments
+the second one being:
+threads.push_back(std::thread(computeAvgFactorThreaded,data + p_indices[i], (total_items / num_threads), std::ref(averages[i])));
+
+3.
+Multiple threads allow us to do tasks simultaneously, in this task specifically, we broke down the calculation of an average into multiple threads,
+each thread calculated a part of the average and in the end we added them togather.
