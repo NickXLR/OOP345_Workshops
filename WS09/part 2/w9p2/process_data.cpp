@@ -116,7 +116,7 @@ namespace sdds
 
 		//creeating threads to calculate averages
 		std::vector<std::thread> threads;
-		for (size_t i = 0; i < num_threads; ++i)
+		for (int i = 0; i < num_threads; ++i)
 		{
 			threads.push_back(std::thread(computeAvgFactorThreaded,data + p_indices[i], (total_items / num_threads), std::ref(averages[i])));
 		}
@@ -126,7 +126,7 @@ namespace sdds
 			thread.join();
 		}
 		//add the factors to avg
-		for (size_t i = 0; i < num_threads; ++i)
+		for (int i = 0; i < num_threads; ++i)
 		{
 			avg += averages[i];
 		}
@@ -135,7 +135,7 @@ namespace sdds
 
 		//calculate variance
 		auto computeVarFactorThreaded = std::bind(computeVarFactor,_1,_2,total_items,avg,_3);
-		for (size_t i = 0; i < num_threads; i++)
+		for (int i = 0; i < num_threads; i++)
 		{
 			threads.push_back(std::thread(computeVarFactorThreaded, data + p_indices[i], (total_items / num_threads), std::ref(variances[i])));
 		}
@@ -145,7 +145,7 @@ namespace sdds
 			thread.join();
 		}
 		//add the variances to var
-		for (size_t i = 0; i < num_threads; ++i)
+		for (int i = 0; i < num_threads; ++i)
 		{
 			var += variances[i];
 		}
